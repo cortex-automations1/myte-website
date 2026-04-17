@@ -43,9 +43,9 @@ export const footerNav = {
 };
 
 export const contactInfo = {
-  phone: "(555) 123-4567",
+  phone: "(602) 666-2476",
   email: "info@mytetech.com",
-  address: "Your City, State",
+  address: "929 N Val Vista Dr #109, Gilbert, AZ 85234",
   hours: "Mon-Fri 8am-6pm",
   clientPortalUrl: "https://support.mytetech.com",
 };

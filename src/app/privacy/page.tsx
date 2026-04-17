@@ -229,7 +229,9 @@ export default function PrivacyPage() {
         <p>
           MYTE Technology
           <br />
-          [Business Street Address]
+          929 N Val Vista Dr #109
+          <br />
+          Gilbert, AZ 85234
           <br />
           Email:{" "}
           <a href="mailto:privacy@mytetech.com">privacy@mytetech.com</a>

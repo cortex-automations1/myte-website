@@ -185,10 +185,10 @@ export default function TermsPage() {
         <h2>12. Governing Law and Venue</h2>
         <p>
           These Terms and any dispute arising out of or related to them or the Site are governed
-          by the laws of the State of [State of Formation], United States, without regard to its
+          by the laws of the State of Arizona, United States, without regard to its
           conflict of laws principles. Subject to Section 13 below, you and MYTE agree that any
           action or proceeding will be brought exclusively in the state or federal courts located
-          in [State of Formation], and you consent to the personal jurisdiction and venue of
+          in Arizona, and you consent to the personal jurisdiction and venue of
           those courts.
         </p>
 
@@ -244,7 +244,9 @@ export default function TermsPage() {
         <p>
           MYTE Technology
           <br />
-          [Business Street Address]
+          929 N Val Vista Dr #109
+          <br />
+          Gilbert, AZ 85234
           <br />
           Email: <a href="mailto:legal@mytetech.com">legal@mytetech.com</a>
         </p>

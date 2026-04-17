@@ -12,8 +12,10 @@ export function StructuredData() {
     email: contactInfo.email,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Your City",
-      addressRegion: "State",
+      streetAddress: "929 N Val Vista Dr #109",
+      addressLocality: "Gilbert",
+      addressRegion: "AZ",
+      postalCode: "85234",
       addressCountry: "US",
     },
     sameAs: [
