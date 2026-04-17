@@ -1,6 +1,8 @@
 "use server";
 
 import { z } from "zod";
+import { headers } from "next/headers";
+import { rateLimit } from "@/lib/rate-limit";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -21,6 +23,14 @@ export async function submitContactForm(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  const headersList = await headers();
+  const forwarded = headersList.get("x-forwarded-for");
+  const ip = forwarded?.split(",")[0]?.trim() ?? "unknown";
+  const { allowed } = rateLimit(`contact:${ip}`);
+  if (!allowed) {
+    return { success: false, error: "Too many submissions. Please try again in a minute." };
+  }
+
   const raw = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,

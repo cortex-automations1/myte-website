@@ -1,6 +1,8 @@
 "use server";
 
 import { z } from "zod";
+import { headers } from "next/headers";
+import { rateLimit } from "@/lib/rate-limit";
 
 const leadSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -18,6 +20,14 @@ export async function submitCalculatorLead(
   _prev: LeadFormState,
   formData: FormData,
 ): Promise<LeadFormState> {
+  const headersList = await headers();
+  const forwarded = headersList.get("x-forwarded-for");
+  const ip = forwarded?.split(",")[0]?.trim() ?? "unknown";
+  const { allowed } = rateLimit(`calculator:${ip}`);
+  if (!allowed) {
+    return { success: false, error: "Too many submissions. Please try again in a minute." };
+  }
+
   const raw = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,

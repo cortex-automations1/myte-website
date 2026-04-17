@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 const SITE_NAME = "MYTE Technology";
 const METADATA_BASE = new URL("https://mytetech.com");
+const baseUrl = METADATA_BASE.toString().replace(/\/$/, "");
 
 export function createMetadata(
   title: string,
@@ -9,6 +10,7 @@ export function createMetadata(
   path: string
 ): Metadata {
   const url = new URL(path, METADATA_BASE).toString();
+  const ogUrl = `${baseUrl}/api/og?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(description)}`;
 
   return {
     title,
@@ -23,11 +25,20 @@ export function createMetadata(
       url,
       siteName: SITE_NAME,
       type: "website",
+      images: [
+        {
+          url: ogUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [ogUrl],
     },
   };
 }

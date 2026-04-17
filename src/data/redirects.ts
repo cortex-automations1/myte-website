@@ -1,0 +1,15 @@
+export const redirects = [
+  { source: "/wp-admin", destination: "/", permanent: false },
+  { source: "/wp-login.php", destination: "/", permanent: false },
+  { source: "/wp-content/:path*", destination: "/", permanent: false },
+  { source: "/feed", destination: "/blog", permanent: true },
+  { source: "/it-services", destination: "/services/managed-it", permanent: true },
+  { source: "/managed-it-services", destination: "/services/managed-it", permanent: true },
+  { source: "/cyber-security", destination: "/services/cybersecurity", permanent: true },
+  { source: "/cloud-services", destination: "/services/cloud", permanent: true },
+  { source: "/it-consulting", destination: "/services/consulting", permanent: true },
+  { source: "/about-us", destination: "/about", permanent: true },
+  { source: "/contact-us", destination: "/contact", permanent: true },
+  { source: "/get-a-quote", destination: "/contact", permanent: true },
+  { source: "/free-consultation", destination: "/contact", permanent: true },
+];

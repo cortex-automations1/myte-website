@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { redirects as wpRedirects } from "./src/data/redirects";
 
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
@@ -28,6 +29,9 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
     ];
+  },
+  async redirects() {
+    return wpRedirects;
   },
 };
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Header, Footer } from "@/components/layout";
+import { Analytics } from "@vercel/analytics/react";
+import { Header, Footer, GoogleAnalytics, StructuredData } from "@/components/layout";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,6 +31,9 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
+        <GoogleAnalytics />
+        <StructuredData />
       </body>
     </html>
   );
