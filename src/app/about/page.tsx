@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Section, SectionHeading, Card } from "@/components/ui";
-import { StatBar, CtaBlock } from "@/components/shared";
+import { CtaBlock } from "@/components/shared";
 import { Shield, Users, Eye, Lightbulb, X, Check } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -68,12 +67,23 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <Section>
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-display-lg md:text-display-xl">
+      <section className="relative overflow-hidden bg-brand-dark py-20 md:py-28">
+        <div className="absolute inset-0">
+          <div className="absolute -right-40 -top-40 h-[400px] w-[400px] rounded-full bg-brand-blue/[0.07] blur-[120px]" />
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+            }}
+          />
+        </div>
+        <div className="container-narrow relative">
+          <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-white md:text-5xl">
             Your IT Team, Not Just Another Vendor
           </h1>
-          <p className="mt-6 text-body-lg text-brand-gray-light">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-400">
             MYTE was founded on a simple premise: small and mid-sized businesses
             deserve the same level of IT expertise and security that large
             enterprises get, without the impersonal service and inflated price
@@ -83,72 +93,109 @@ export default function AboutPage() {
             does.
           </p>
         </div>
-      </Section>
+      </section>
 
       {/* Stats */}
-      <Section background="light">
-        <StatBar stats={stats} />
-      </Section>
+      <section className="bg-brand-surface py-20 md:py-28">
+        <div className="container-narrow">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl font-bold text-brand-dark">
+                  {stat.value}
+                </div>
+                <div className="mt-1 text-body-sm text-brand-gray-light">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Values */}
-      <Section>
-        <SectionHeading
-          title="What We Stand For"
-          subtitle="These are not aspirational posters on a wall. These are the principles that guide every decision we make."
-        />
-        <div className="grid gap-8 md:grid-cols-2">
-          {values.map((v) => (
-            <div key={v.title} className="flex gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-blue-light">
-                <v.icon className="h-6 w-6 text-brand-blue" />
+      <section className="py-20 md:py-28">
+        <div className="container-narrow">
+          <div className="mb-16 max-w-2xl">
+            <p className="mb-3 text-body-sm font-semibold uppercase tracking-widest text-brand-blue">
+              Our Values
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-brand-dark md:text-4xl">
+              What We Stand For
+            </h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {values.map((v) => (
+              <div key={v.title} className="flex gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-blue/[0.08]">
+                  <v.icon className="h-5 w-5 text-brand-blue" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-dark">
+                    {v.title}
+                  </h3>
+                  <p className="mt-2 text-body-md leading-relaxed text-brand-gray-light">
+                    {v.description}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-display-sm">{v.title}</h3>
-                <p className="mt-2 text-body-md text-brand-gray-light">
-                  {v.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* MYTE Difference */}
-      <Section background="light">
-        <SectionHeading
-          title="The MYTE Difference"
-          subtitle="See how we stack up against the big managed security providers."
-        />
-        <Card className="overflow-hidden">
-          <div className="hidden md:grid md:grid-cols-3 border-b border-gray-200 px-6 py-4 font-semibold text-brand-dark">
-            <div>&nbsp;</div>
-            <div className="text-center">Big MSSP</div>
-            <div className="text-center">MYTE</div>
+      <section className="bg-brand-surface py-20 md:py-28">
+        <div className="container-narrow">
+          <div className="mb-16 max-w-2xl">
+            <p className="mb-3 text-body-sm font-semibold uppercase tracking-widest text-brand-blue">
+              The MYTE Difference
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-brand-dark md:text-4xl">
+              See how we stack up
+            </h2>
           </div>
-          {comparisons.map((row) => (
-            <div
-              key={row.category}
-              className="grid gap-4 border-b border-gray-100 px-6 py-5 last:border-0 md:grid-cols-3 md:gap-0"
-            >
-              <div className="font-semibold text-brand-dark">
-                {row.category}
-              </div>
-              <div className="flex items-start gap-2 md:justify-center md:text-center">
-                <X className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
-                <span className="text-body-sm text-brand-gray-light">
-                  {row.bigMssp}
-                </span>
-              </div>
-              <div className="flex items-start gap-2 md:justify-center md:text-center">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
-                <span className="text-body-sm text-brand-gray-light">
-                  {row.myte}
-                </span>
-              </div>
+
+          {/* Header row */}
+          <div className="mb-4 hidden md:grid md:grid-cols-3 md:gap-6 md:px-6">
+            <div />
+            <div className="text-center text-body-sm font-semibold text-brand-dark">
+              Big MSSP
             </div>
-          ))}
-        </Card>
-      </Section>
+            <div className="text-center text-body-sm font-semibold text-brand-dark">
+              MYTE
+            </div>
+          </div>
+
+          {/* Comparison rows */}
+          <div className="space-y-4">
+            {comparisons.map((row) => (
+              <div
+                key={row.category}
+                className="rounded-2xl border border-gray-100 bg-white p-6"
+              >
+                <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+                  <div className="font-semibold text-brand-dark">
+                    {row.category}
+                  </div>
+                  <div className="flex items-start gap-2 md:justify-center md:text-center">
+                    <X className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
+                    <span className="text-body-sm text-brand-gray-light">
+                      {row.bigMssp}
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2 md:justify-center md:text-center">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand-green" />
+                    <span className="text-body-sm text-brand-gray-light">
+                      {row.myte}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <CtaBlock
