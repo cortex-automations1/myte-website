@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mytetech.com
+
+# Sitemaps
+Sitemap: https://mytetech.com/sitemap.xml
