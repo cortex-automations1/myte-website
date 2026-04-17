@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description:
     "MYTE Technology provides managed IT services and cybersecurity solutions for small and mid-sized businesses. Proactive support, expert guidance, real results.",
-  metadataBase: new URL("https://mytetechnology.com"),
+  metadataBase: new URL("https://mytetech.com"),
 };
 
 export default function RootLayout({
