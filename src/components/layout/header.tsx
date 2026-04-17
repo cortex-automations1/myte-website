@@ -11,10 +11,10 @@ export function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-dark/95 backdrop-blur">
       <div className="container-narrow flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-display-sm font-bold text-brand-dark">
+        <Link href="/" className="text-display-sm font-bold text-white">
           MYTE
         </Link>
 
@@ -28,19 +28,19 @@ export function Header() {
                 onMouseEnter={() => setDropdownOpen(true)}
                 onMouseLeave={() => setDropdownOpen(false)}
               >
-                <button className="flex items-center gap-1 text-body-md text-brand-gray transition-colors hover:text-brand-blue">
+                <button className="flex items-center gap-1 text-body-md text-gray-300 transition-colors hover:text-white">
                   {item.label}
                   <ChevronDown className="h-4 w-4" />
                 </button>
 
                 {dropdownOpen && (
                   <div className="absolute left-0 top-full pt-2">
-                    <div className="min-w-[200px] rounded-brand bg-white p-2 shadow-card-hover">
+                    <div className="min-w-[200px] rounded-brand border border-white/10 bg-brand-dark-light p-2 shadow-xl">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block rounded-brand px-4 py-2 text-body-md text-brand-gray transition-colors hover:bg-brand-blue-light hover:text-brand-blue"
+                          className="block rounded-brand px-4 py-2 text-body-md text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
                         >
                           {child.label}
                         </Link>
@@ -53,7 +53,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-body-md text-brand-gray transition-colors hover:text-brand-blue"
+                className="text-body-md text-gray-300 transition-colors hover:text-white"
               >
                 {item.label}
               </Link>
@@ -75,22 +75,22 @@ export function Header() {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           {mobileOpen ? (
-            <X className="h-6 w-6 text-brand-dark" />
+            <X className="h-6 w-6 text-white" />
           ) : (
-            <Menu className="h-6 w-6 text-brand-dark" />
+            <Menu className="h-6 w-6 text-white" />
           )}
         </button>
       </div>
 
       {/* Mobile Nav Panel */}
       {mobileOpen && (
-        <div className="border-t border-gray-100 bg-white lg:hidden">
+        <div className="border-t border-white/10 bg-brand-dark lg:hidden">
           <nav className="container-narrow flex flex-col gap-1 py-4">
             {mainNav.map((item) => (
               <div key={item.label}>
                 <Link
                   href={item.href}
-                  className="block rounded-brand px-4 py-3 text-body-md text-brand-gray transition-colors hover:bg-brand-blue-light hover:text-brand-blue"
+                  className="block rounded-brand px-4 py-3 text-body-md text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -101,7 +101,7 @@ export function Header() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block rounded-brand px-4 py-2 text-body-sm text-brand-gray-light transition-colors hover:bg-brand-blue-light hover:text-brand-blue"
+                        className="block rounded-brand px-4 py-2 text-body-sm text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
