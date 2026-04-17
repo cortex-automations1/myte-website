@@ -1,29 +1,29 @@
 const partners = [
-  { name: "Microsoft", style: "font-bold tracking-wide" },
-  { name: "SentinelOne", style: "font-extrabold tracking-tight" },
-  { name: "Datto", style: "font-bold tracking-widest uppercase" },
-  { name: "CompTIA", style: "font-black tracking-wide" },
-  { name: "SOC 2", style: "font-bold tracking-[0.2em]" },
+  { name: "Microsoft", style: "font-semibold tracking-wide" },
+  { name: "SentinelOne", style: "font-bold tracking-tight" },
+  { name: "Datto", style: "font-semibold tracking-[0.15em] uppercase text-[13px]" },
+  { name: "CompTIA", style: "font-bold tracking-wide" },
+  { name: "SOC 2", style: "font-semibold tracking-[0.2em]" },
 ];
 
 export function TrustBar() {
   return (
-    <div className="bg-gradient-to-r from-brand-dark to-brand-dark-light py-8">
+    <section className="border-b border-gray-100 bg-white py-10">
       <div className="container-narrow">
-        <p className="mb-4 text-center text-xs font-medium uppercase tracking-widest text-white/40">
-          Trusted by industry leaders
+        <p className="mb-6 text-center text-body-sm text-brand-gray-light">
+          Trusted partnerships and certifications
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
           {partners.map((partner) => (
             <span
               key={partner.name}
-              className={`text-lg text-white/60 transition-colors duration-300 hover:text-white/90 ${partner.style}`}
+              className={`text-base text-gray-300 ${partner.style}`}
             >
               {partner.name}
             </span>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
