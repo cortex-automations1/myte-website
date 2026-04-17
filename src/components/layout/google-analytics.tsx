@@ -1,9 +1,25 @@
+"use client";
+
 import Script from "next/script";
+import { useEffect, useState } from "react";
+import { cookieConsentEvents, readConsent } from "./cookie-consent";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export function GoogleAnalytics() {
-  if (!GA_ID) return null;
+  const [consented, setConsented] = useState(false);
+
+  useEffect(() => {
+    setConsented(readConsent() === "accepted");
+    const handler = (event: Event) => {
+      const detail = (event as CustomEvent).detail;
+      setConsented(detail === "accepted");
+    };
+    window.addEventListener(cookieConsentEvents.CONSENT_EVENT, handler);
+    return () => window.removeEventListener(cookieConsentEvents.CONSENT_EVENT, handler);
+  }, []);
+
+  if (!GA_ID || !consented) return null;
 
   return (
     <>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import { Header, Footer, GoogleAnalytics, StructuredData } from "@/components/layout";
+import { Header, Footer, GoogleAnalytics, StructuredData, CookieConsent } from "@/components/layout";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,6 +34,7 @@ export default function RootLayout({
         <Analytics />
         <GoogleAnalytics />
         <StructuredData />
+        <CookieConsent />
       </body>
     </html>
   );
