@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { headers } from "next/headers";
 import { rateLimit } from "@/lib/rate-limit";
+import { sendContactLead } from "@/lib/email";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -53,8 +54,7 @@ export async function submitContactForm(
     return { success: false, error: firstError.message };
   }
 
-  // Log submission for now (replace with email/CRM integration later)
-  console.log("Contact form submission:", {
+  const { sent, reason } = await sendContactLead({
     name: result.data.name,
     email: result.data.email,
     phone: result.data.phone,
@@ -62,6 +62,13 @@ export async function submitContactForm(
     interest: result.data.interest,
     message: result.data.message,
   });
+
+  if (!sent && reason !== "email-not-configured") {
+    return {
+      success: false,
+      error: "We couldn't send your message right now. Please try again or email us directly.",
+    };
+  }
 
   return { success: true };
 }
